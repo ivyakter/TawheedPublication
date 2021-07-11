@@ -1,0 +1,684 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="DefaultMaster.master.cs" Inherits="MasterPage_Default" %>
+
+<%@ Register Src="../UCHitCount.ascx" TagName="HitCounter" TagPrefix="uc1" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Tawheed Publication</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/tpbdLogo.png" />
+
+    <!-- CSS 
+    ========================= -->
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="../assets/css/plugins.css" />
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!--header area start-->
+
+        <!--Offcanvas menu area start-->
+        <div class="off_canvars_overlay">
+        </div>
+        <div class="Offcanvas_menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="canvas_open">
+                            <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+                        </div>
+                        <div class="Offcanvas_menu_wrapper">
+                            <div class="canvas_close">
+                                <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                            </div>
+                            <div class="support_info">
+                                <p>Telephone Enquiry: <a href="tel:+6494461709">+880247112762</a></p>
+                            </div>
+                            <div class="top_right text-right">
+                                <ul>
+                                    <li><a href="my-account.html">My Account </a></li>
+                                    <li><a href="checkout.html">Checkout </a></li>
+                                </ul>
+                            </div>
+                            <div class="search_container">
+                                <div>
+                                    <div class="hover_category">
+                                        <select class="select_option" name="select" id="categori">
+                                            <option selected value="1">All Categories</option>
+                                            <option value="2">Books</option>
+                                        </select>
+                                    </div>
+                                    <div class="search_box">
+                                        <input placeholder="Search product..." type="text" />
+                                        <button type="submit">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="middel_right_info">
+                                <div class="header_wishlist">
+                                    <a href="wishlist.html"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+
+                                </div>
+                                <div class="mini_cart_wrapper">
+                                    <a href="javascript:void(0)"><i class="fa fa-shopping-bag" aria-hidden="true"></i>00.00 <i class="fa fa-angle-down"></i></a>
+                                    <span class="cart_quantity"></span>
+                                    <!--mini cart-->
+                                    <div class="mini_cart">
+                                        <%--<div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="#">
+                                                    <img src="../assets/img/s-product/product.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="#">Sit voluptatem rhoncus sem lectus</a>
+                                                <p>Qty: 1 X <span>$60.00 </span></p>
+                                            </div>
+                                            <div class="cart_remove">
+                                                <a href="#"><i class="ion-android-close"></i></a>
+                                            </div>
+                                        </div>--%>
+                                        <%--<div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="#">
+                                                    <img src="../assets/img/s-product/product2.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="#">Natus erro at congue massa commodo</a>
+                                                <p>Qty: 1 X <span>$60.00 </span></p>
+                                            </div>
+                                            <div class="cart_remove">
+                                                <a href="#"><i class="ion-android-close"></i></a>
+                                            </div>
+                                        </div>--%>
+                                        <div class="mini_cart_table">
+                                            <div class="cart_total mt-10">
+                                                <span>total:</span>
+                                                <span class="price">00.00</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mini_cart_footer">
+                                            <div class="cart_button">
+                                                <a href="<%= Page.ResolveUrl("~")%>Pages/Cart/Cart.aspx">View cart</a>
+                                            </div>
+                                            <div class="cart_button">
+                                                <a href="<%= Page.ResolveUrl("~")%>Pages/Cart/Cart.aspx">Checkout</a>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!--mini cart end-->
+                                </div>
+                            </div>
+                            <div id="menu" class="text-left ">
+                                <ul class="offcanvas_main_menu">
+                                    <li class="menu-item-has-children active">
+                                        <a href="<%= Page.ResolveUrl("~")%>Default.aspx">Home</a>
+                                    </li>
+                                    <li class=""><a href="<%= Page.ResolveUrl("~")%>Pages/Publication.aspx">Publication<i class="fa fa-angle-down"></i></a>
+                                        <div class="">
+                                            <ul class="sub_menu pages">
+                                                <li><a href="#"></a>
+                                                    <ul>
+                                                        <asp:Repeater runat="server" ID="rptPublication1">
+                                                            <ItemTemplate>
+                                                                <li><a href="<%= Page.ResolveUrl("~")%>Pages/Publication.aspx?Pub=<%#Eval("Id") %>"><%#Eval("Name") %></a></li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class=""><a href="<%= Page.ResolveUrl("~")%>Pages/Writer.aspx">Writer<i class="fa fa-angle-down"></i></a>
+                                        <div class="">
+                                            <ul class="sub_menu pages">
+                                                <li><a href="#"></a>
+                                                    <ul>
+                                                        <asp:Repeater runat="server" ID="rptWriter3">
+                                                            <ItemTemplate>
+                                                                <li><a href="<%= Page.ResolveUrl("~")%>Pages/Writer.aspx?Writer=<%#Eval("Code") %>"><%#Eval("Name") %></a></li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li><a href="<%= Page.ResolveUrl("~")%>Pages/Blog.aspx">blog</a>
+                                        <%--<ul class="sub_menu pages">
+                                            <li><a href="<%= Page.ResolveUrl("~")%>Pages/Blog.aspx">blog details</a></li>
+                                        </ul>--%>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="<%= Page.ResolveUrl("~")%>Pages/Package.aspx">Package</a>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="about.html">about Us</a>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="contact.html">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="Offcanvas_footer">
+                                <span><a href="#"><i class="fa fa-envelope-o"></i>+880247112762</a></span>
+                                <ul>
+                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Offcanvas menu area end-->
+
+        <header>
+            <div class="main_header">
+                <!--header top start-->
+                <div class="header_top">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="support_info">
+                                    <p>Telephone Enquiry: <a href="tel:+6494461709">+880247112762</a></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="top_right text-right">
+                                    <div class="main_menu menu_position">
+                                        <nav>
+                                            <ul>
+                                                <li><a style="color: #000" href="#">My Account </a>
+                                                    <ul class="sub_menu pages">
+                                                        <li><a href="#">Checkout </a></li>
+                                                        <li><a href="<%= Page.ResolveUrl("~")%>Pages/MyAccount/MyAccount.aspx">My Account</a></li>
+                                                        <li><a href="<%= Page.ResolveUrl("~")%>Pages/MyAccount/LogIn.aspx">LogIn</a></li>
+                                                        <li><a href="<%= Page.ResolveUrl("~")%>Pages/MyAccount/Registration.aspx">Register</a></li>
+                                                          <li><a href="http://103.218.25.69:2025" target="_blank">Login Store</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a style="color: #000" href="#">about Us </a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--header top start-->
+                <!--header middel start-->
+                <div class="header_middle">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="logo">
+                                    <a href="<%= Page.ResolveUrl("~")%>Default.aspx">
+                                        <img src="../assets/img/logo/logo.png" alt="" /></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-6">
+                                <div class="middel_right">
+                                    <div class="search_container">
+                                        <div>
+                                            <%--<div class="hover_category" style="margin-left:200px;">
+                                            </div>--%>
+                                            <div class="search_box" style="width: 490px; border: 2px solid #ebebeb; border-radius: 9px;">
+                                                <asp:TextBox runat="server" CssClass="form-control" Width="100%" AutoPostBack="true" OnTextChanged="txtSearch_TextChanged" ID="txtSearch" placeholder="Search..."></asp:TextBox>
+                                                <button type="submit">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="middel_right_info">
+                                        <div class="mini_cart_wrapper">
+                                            <a href="#"><a href="<%= Page.ResolveUrl("~")%>Pages/Cart/Cart.aspx"><i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                                <asp:Label runat="server" ID="lblcount" Text="0" Font-Size="Medium" class="mini-cart-number border radius"></asp:Label><i class="fa fa-angle-down"></i></a></a>
+                                            <!--mini cart-->
+                                            <div class="mini_cart">
+                                                <% if (lblcount.Text != "0")
+                                                    {%>
+                                                <%  GetMenuList(); %>
+                                                <asp:Repeater runat="server" ID="rptrsuperdeals1">
+                                                    <ItemTemplate>
+                                                        <div class="cart_item">
+                                                            <div class="cart_img">
+                                                                <asp:Label runat="server" Visible="false" Text='<%#Eval("pid") %>' ID="Label21"></asp:Label>
+                                                                <a href="#">
+                                                                    <img style="height: 90px" src="../BookImage/<%#Eval("Barcode") %>/<%#Eval("Barcode") %>Font<%#Eval("Imageextension") %>" alt=""></a>
+                                                            </div>
+                                                            <div class="cart_info">
+                                                                <a href="#"><%# Eval("pname") %></a>
+                                                                <p>Tk <%# Eval("price") %></span></p>
+                                                            </div>
+                                                            <%--<div class="cart_remove">
+                                                                <a href="#"><i class="ion-android-close"></i></a>
+                                                            </div>--%>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                                <%}%>
+                                                <div class="mini_cart_table">
+                                                    <div class="cart_total">
+                                                        <span>total:</span>
+                                                        <span class="price">
+                                                            <asp:Label runat="server" Style="display: inline" ID="Label2" Text="00.00"></asp:Label></span>
+                                                    </div>
+                                                    <%--<div class="cart_total mt-10">
+                                                    <span>Delivery:</span>
+                                                    <span class="price">tK 00.00</span>
+                                                </div>--%>
+                                                </div>
+
+                                                <div class="mini_cart_footer">
+                                                    <div class="col-md-12">
+                                                        <div style="float: left" class="col-md-6 cart_button">
+                                                            <a href="<%= Page.ResolveUrl("~")%>Pages/Cart/Cart.aspx">View cart</a>
+                                                        </div>
+                                                        <div style="float: left; padding: 2px" class="col-md-6 cart_button">
+                                                            <a href="<%= Page.ResolveUrl("~")%>Pages/Cart/Cart.aspx">Checkout</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!--mini cart end-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--header middel end-->
+                <!--header bottom satrt-->
+                <div class="main_menu_area">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 col-md-12">
+                                <div class="categories_menu">
+                                    <div class="categories_title">
+                                        <h2 class="categori_toggle">ALL CATEGORIES</h2>
+                                    </div>
+                                    <div class="categories_menu_toggle">
+                                        <ul>
+                                            <asp:Repeater runat="server" ID="repeaterAllCategory" OnItemDataBound="repeaterAllCategory_ItemDataBound">
+                                                <ItemTemplate>
+                                                    <li class="menu_item_children"><a href="<%= Page.ResolveUrl("~")%>Pages/Books.aspx?Cat=<%#Eval("Id") %>"><%#Eval("Name") %><i class="fa fa-angle-right"></i></a>
+                                                        <asp:Label runat="server" ID="lblCatId" Text='<%#Eval("Id") %>' Visible="false"></asp:Label>
+                                                        <ul class="categories_mega_menu">
+                                                            <asp:Repeater runat="server" ID="repeaterBookCategory1">
+                                                                <ItemTemplate>
+                                                                    <li class="menu_item_children"><a href='<%= Page.ResolveUrl("~")%>Pages/Books.aspx?SubCat=<%#Eval("Id") %>'><%#Eval("Name") %></a>
+                                                                    </li>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </ul>
+
+                                                    </li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-12">
+                                <div class="main_menu menu_position">
+                                    <nav>
+                                        <ul>
+                                            <li><a class="active" href="<%= Page.ResolveUrl("~")%>Default.aspx">home </a>
+                                            </li>
+                                            <li class=""><a href="<%= Page.ResolveUrl("~")%>Pages/Publication.aspx">Publication<i class="fa fa-angle-down"></i></a>
+                                                <div class="">
+                                                    <ul class="sub_menu pages">
+                                                        <li><a href="#"></a>
+                                                            <ul>
+                                                                <asp:Repeater runat="server" ID="rptPublication">
+                                                                    <ItemTemplate>
+                                                                        <li><a href="<%= Page.ResolveUrl("~")%>Pages/Publication.aspx?Pub=<%#Eval("Id") %>"><%#Eval("Name") %></a></li>
+                                                                    </ItemTemplate>
+                                                                </asp:Repeater>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class=""><a href="<%= Page.ResolveUrl("~")%>Pages/Writer.aspx">Writer<i class="fa fa-angle-down"></i></a>
+                                                <div class="">
+                                                    <ul class="sub_menu pages">
+                                                        <li><a href="#"></a>
+                                                            <ul>
+                                                                <asp:Repeater runat="server" ID="rptWriter">
+                                                                    <ItemTemplate>
+                                                                        <li><a href="<%= Page.ResolveUrl("~")%>Pages/Writer.aspx?Writer=<%#Eval("Code") %>"><%#Eval("Name") %></a></li>
+                                                                    </ItemTemplate>
+                                                                </asp:Repeater>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li><a href="<%= Page.ResolveUrl("~")%>Pages/Blog.aspx">blog</a>
+                                                <%--<ul class="sub_menu pages">
+                                                    <li><a href="<%= Page.ResolveUrl("~")%>Pages/Blog.aspx">blog details</a></li>
+                                                </ul>--%>
+                                            </li>
+                                            <li><a href="<%= Page.ResolveUrl("~")%>Pages/Package.aspx">package</a></li>
+                                            <li><a href="<%= Page.ResolveUrl("~")%>Pages/Books.aspx">All Books<i class="fa fa-angle-down"></i></a>
+                                                <ul class="sub_menu pages">
+                                                        <li><a href="#"></a>
+                                                            <ul>
+                                                                <asp:Repeater runat="server" ID="rptBooks">
+                                                                    <ItemTemplate>
+                                                                        <li><a href="<%= Page.ResolveUrl("~")%>Pages/Books.aspx?SubCat=<%#Eval("Id") %>"><%#Eval("Name") %></a></li>
+                                                                    </ItemTemplate>
+                                                                </asp:Repeater>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                            </li>
+                                            <li><a href="contact.html">Contact Us</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--header bottom end-->
+            </div>
+        </header>
+        <!--header area end-->
+
+        <!--sticky header area start-->
+        <div class="sticky_header_area sticky-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3">
+                        <%--<div class="logo">
+                            <a href="index.html">
+                                <img src="../../lib/frontend/img/logo/tpbdLogo.png" width="50" height="50" alt="" /></a>
+                        </div>--%>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="sticky_header_right menu_position">
+                            <div class="main_menu">
+                                <nav>
+                                    <ul>
+                                        <li><a class="" href="<%= Page.ResolveUrl("~")%>Default.aspx">home<i class=""></i></a>
+                                        </li>
+                                        <li class=""><a href="#">books<i class="fa fa-angle-down"></i></a>
+                                            <div class="">
+                                                <ul class="sub_menu pages">
+                                                    <li><a href="#"></a>
+                                                        <ul>
+                                                            <asp:Repeater runat="server" ID="rptBook2">
+                                                                <ItemTemplate>
+                                                                    <li><a href="<%= Page.ResolveUrl("~")%>Pages/Books.aspx?SubCat=<%# Eval("Id").ToString() %>"><%#Eval("Name") %></a></li>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class=""><a href="<%= Page.ResolveUrl("~")%>Pages/Publication.aspx">Publication<i class="fa fa-angle-down"></i></a>
+                                            <div class="">
+                                                <ul class="sub_menu pages">
+                                                    <li><a href="#"></a>
+                                                        <ul>
+                                                            <asp:Repeater runat="server" ID="rptPublication2">
+                                                                <ItemTemplate>
+                                                                    <li><a href="<%= Page.ResolveUrl("~")%>Pages/Publication.aspx?Pub=<%#Eval("Id") %>"><%#Eval("Name") %></a></li>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class=""><a href="<%= Page.ResolveUrl("~")%>Pages/Writer.aspx">Writer<i class="fa fa-angle-down"></i></a>
+                                            <div class="">
+                                                <ul class="sub_menu pages">
+                                                    <li><a href="#"></a>
+                                                        <ul>
+                                                            <asp:Repeater runat="server" ID="rptWriter2">
+                                                                <ItemTemplate>
+                                                                    <li><a href="<%= Page.ResolveUrl("~")%>Pages/Writer.aspx?Writer=<%#Eval("Code") %>"><%#Eval("Name") %></a></li>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li><a href="<%= Page.ResolveUrl("~")%>Pages/Package.aspx">Package</a></li>
+                                        <li><a href="<%= Page.ResolveUrl("~")%>Pages/Blog.aspx">blog</a>
+                                            <%--<ul class="sub_menu pages">
+                                                <li><a href="<%= Page.ResolveUrl("~")%>Pages/Blog.aspx">blog details</a></li>
+                                            </ul>--%>
+                                        </li>
+                                        <%--<li><a href="#">about Us</a></li>--%>
+                                        <%-- <li><a href="#">Contact Us</a></li>--%>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="middel_right_info">
+                                <div class="header_wishlist">
+                                    <%--<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>--%>
+                                    <%--<span class="wishlist_quantity">3</span>--%>
+                                </div>
+                                <div class="mini_cart_wrapper">
+                                    <a href="javascript:void(0)"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-angle-down"></i></a>
+                                    <%--<span class="cart_quantity">2</span>--%>
+                                    <!--mini cart-->
+                                    <div class="mini_cart">
+                                        <%--<div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="#">
+                                                <img src="../../lib/frontend/img/s-product/product.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="#">Sit voluptatem rhoncus sem lectus</a>
+                                            <p>Qty: 1 X <span>$60.00 </span></p>
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="#">
+                                                <img src="../../lib/frontend/img/s-product/product2.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="#">Natus erro at congue massa commodo</a>
+                                            <p>Qty: 1 X <span>$60.00 </span></p>
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="mini_cart_table">
+                                        <div class="cart_total">
+                                            <span>Sub total:</span>
+                                            <span class="price">$138.00</span>
+                                        </div>
+                                        <div class="cart_total mt-10">
+                                            <span>total:</span>
+                                            <span class="price">$138.00</span>
+                                        </div>
+                                    </div>--%>
+
+                                        <div class="mini_cart_footer">
+                                            <div class="cart_button">
+                                                <a href="<%= Page.ResolveUrl("~")%>Pages/Cart/Cart.aspx">View cart</a>
+                                            </div>
+                                            <div class="cart_button">
+                                                <a href="<%= Page.ResolveUrl("~")%>Pages/Cart/Cart.aspx">Checkout</a>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!--mini cart end-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--sticky header area end-->
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <!--footer area start-->
+        <footer class="footer_widgets">
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="widgets_container contact_us">
+                                <div class="footer_logo">
+                                    <a href="#">
+                                        <img src="../lib/frontend/img/logo/tpbdLogo.png" width="50" height="50" alt="" /></a>
+                                </div>
+                                <div class="footer_contact">
+                                    <p>
+                                        কুরআন ও সহীহ সুন্নাহর গণ্ডিতে আবন্ধ নির্ভরযোগ্য প্রকাশনায় সচেষ্ট
+                                    </p>
+                                    <p><span>Address</span> 90, Haji Abdullah Sarkar Lane, Bongshal, Dhaka-1100, Bangladesh.</p>
+                                    <p><span>Mobile: </span><a href="tel:+123.456.678">+880247112762, 01711646396, 01777985084, 01919646396</a> </p>
+                                    <p><span>Support: </span><a href="#">tawheedpublications@gmail.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6">
+                            <div class="widgets_container widget_menu">
+                                <h3>Information</h3>
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Delivery Information</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">Returns</a></li>
+                                        <li><a href="#">Gift Certificates</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6">
+                            <div class="widgets_container widget_menu">
+                                <h3>My Account</h3>
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#">My Account</a></li>
+                                        <li><a href="#">Order History</a></li>
+                                        <li><a href="#">Wish List</a></li>
+                                        <li><a href="#">Newsletter</a></li>
+                                        <li><a href="#">Affiliate</a></li>
+                                        <li><a href="#">International Orders</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="widgets_container newsletter">
+                                <h3>Follow Us</h3>
+                                <div class="footer_social_link">
+                                    <ul>
+                                        <li><a class="facebook" href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a class="twitter" href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a class="instagram" href="#" title="instagram"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a class="rss" href="#" title="rss"><i class="fa fa-rss"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="subscribe_form">
+                                    <h3>Join Our Newsletter Now</h3>
+                                    <div id="mc-form" class="mc-form footer-newsletter">
+                                        <input id="mc-email" type="email" autocomplete="off" placeholder="Your email address..." />
+                                        <button id="mc-submit">Subscribe!</button>
+                                    </div>
+                                    <!-- mailchimp-alerts Start -->
+                                    <div class="mailchimp-alerts text-centre">
+                                        <div class="mailchimp-submitting"></div>
+                                        <!-- mailchimp-submitting end -->
+                                        <div class="mailchimp-success"></div>
+                                        <!-- mailchimp-success end -->
+                                        <div class="mailchimp-error"></div>
+                                        <!-- mailchimp-error end -->
+                                    </div>
+                                    <!-- mailchimp-alerts end -->
+                                </div>
+                                <div class="subscribe_form">
+                                    <h3>Visitor Counter</h3>
+                                    <uc1:HitCounter ID="UCHitCounter1" runat="server" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="footer_bottom">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="copyright_area">
+                                <p>
+                                    Copyright &copy;
+                                <script type="text/javascript">document.write(new Date().getFullYear());</script>
+                                    <a href="#">Tawheed Publications.</a>  All Right Reserved.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="footer_payment text-right">
+                                <a href="#">
+                                    <img src="../lib/frontend/img/icon/payment.png" alt="" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--footer area end-->
+
+
+
+        <!-- JS
+============================================ -->
+
+        <!-- Plugins JS -->
+        <script src="<% =Page.ResolveUrl("~") %>assets/js/plugins.js"></script>
+
+        <!-- Main JS -->
+        <script src="<% =Page.ResolveUrl("~") %>assets/js/main.js"></script>
+    </form>
+</body>
+</html>
